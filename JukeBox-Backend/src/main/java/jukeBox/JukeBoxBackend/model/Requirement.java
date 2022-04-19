@@ -1,7 +1,7 @@
 /**
  * 
  */
-package jukeBox.JukeBoxBackend.Model;
+package jukeBox.JukeBoxBackend.model;
 
 /**
  * @author Elias

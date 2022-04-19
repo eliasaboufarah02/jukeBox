@@ -1,4 +1,4 @@
-package jukeBox.JukeBoxBackend.Model;
+package jukeBox.JukeBoxBackend.model;
 
 public class Components {
 	private String name;
