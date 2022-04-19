@@ -17,7 +17,7 @@ import jukeBox.JukeBoxBackend.model.JukeBox;
 import jukeBox.JukeBoxBackend.model.Requirement;
 import jukeBox.JukeBoxBackend.model.Settings;
 
-/**
+/**Tester for the model objects
  * @author Elias
  *
  */

@@ -2,7 +2,6 @@ package jukeBox.JukeBoxBackend.service;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -16,10 +15,28 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-
+/**
+ * Service Class of the Api
+ * Handles the business methods
+ * @author Elias
+ *
+ */
 @Service
 public class JukeBoxService {
+	//attributes
 	private Integer limit;
+	
+	/**
+	 * Method to return search result given the following parameters
+	 * @param inputStream Content of the get call to get the list of jukeboxes
+	 * @param inputStreamSettings Content of the get call to get the list of settings
+	 * @param shift Offset value to be parsed to an integer
+	 * @param max Limit value to be parsed to an integer
+	 * @param settingid The id of the setting configuration to look up
+	 * @param model Model of the juke box to filter search results
+	 * @return Paginated list of juke boxes supporting settings of a specific setting Id
+	 * @throws Exception
+	 */
 	public ArrayList<JukeBox> getJukeBoxes(InputStream inputStream,InputStream inputStreamSettings,String shift,String max,String settingid,String model) throws Exception {
 		try {
 			Integer offset = Integer.parseInt(shift);
@@ -52,6 +69,18 @@ public class JukeBoxService {
 		}
 		
 	}
+	
+	/**
+	 * Private Helper method to search for the result inside the two passed ArrayLists
+	 * @param matches List of all juke boxes
+	 * @param settingsList List of settings
+	 * @param settingid Setting id to filter with
+	 * @param model Model name to filter results
+	 * @param offset Offset value for paginated return
+	 * @param limit Maximum number of juke boxes to be returned in page
+	 * @return Paginated List of juke boxes
+	 * @throws Exception
+	 */
 	private ArrayList<JukeBox> search(ArrayList<JukeBox> matches, ArrayList<Settings> settingsList, String settingid,String model,Integer offset,Integer limit) throws Exception {
 		Settings matchesSettings = settingsList.stream().filter(setting-> setting.getId().equals(settingid))
 	            .findFirst().orElse(null);
@@ -83,6 +112,11 @@ public class JukeBoxService {
 		
 		return new ArrayList<JukeBox>(matches.subList(offset, matches.size()));
 	}
+	/**
+	 * Generate Settings Objects
+	 * @param inputStreamSettings
+	 * @return
+	 */
 	private ArrayList<Settings> generateSettings(InputStream inputStreamSettings) {
 		ArrayList<Settings> settings = new ArrayList<Settings>();
 		JsonReader fileReader = Json.createReader(inputStreamSettings);
@@ -100,6 +134,12 @@ public class JukeBoxService {
 		}
 		return settings;
 	}
+	/**
+	 * Generate Juke Boxes Objects
+	 * @param inputStream
+	 * @return
+	 * @throws Exception
+	 */
 	private ArrayList<JukeBox> generateJukeBoxes(InputStream inputStream) throws Exception{
 		ArrayList<JukeBox> jukeBoxes = new ArrayList<JukeBox>();
 		JsonReader fileReader = Json.createReader(inputStream);

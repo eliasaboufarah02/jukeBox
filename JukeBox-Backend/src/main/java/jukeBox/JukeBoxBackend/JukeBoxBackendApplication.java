@@ -5,6 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Spring Boot Application
+ * @author Elias
+ *
+ */
 @RestController
 @SpringBootApplication
 public class JukeBoxBackendApplication {
