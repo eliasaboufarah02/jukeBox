@@ -26,13 +26,13 @@ import jukeBox.JukeBoxBackend.service.JukeBoxService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/juke")
+@RequestMapping("/api/jukebox")
 public class JukeBoxController {
 	@Autowired
 	private JukeBoxService service;
 	
-	@GetMapping(value = { "/jukes", "/jukes/" })
-	public ResponseEntity<?> getJukeBoxes(@RequestParam String id,@RequestParam(defaultValue = "0") String offset,@RequestParam(defaultValue = "-1") String max,@RequestParam(defaultValue = "-1") String model) {
+	@GetMapping(value = { "/findBySettingId", "/findBySettingId/" })
+	public ResponseEntity<?> getJukeBoxes(@RequestParam String id,@RequestParam(defaultValue = "0") String offset,@RequestParam(defaultValue = "NotSet") String limit,@RequestParam(defaultValue = "-1") String model) {
 
 		ArrayList<JukeBoxDto> jukeBoxes = new ArrayList<JukeBoxDto>();
 		URL url;
@@ -47,7 +47,7 @@ public class JukeBoxController {
 			conSettings = (HttpURLConnection) urlSettings.openConnection();
 			conSettings.setRequestMethod("GET");
 			InputStream inputStreamSettings = conSettings.getInputStream();
-			ArrayList<JukeBox> jukes = service.getJukeBoxes(inputStream,inputStreamSettings,offset,max,id,model);
+			ArrayList<JukeBox> jukes = service.getJukeBoxes(inputStream,inputStreamSettings,offset,limit,id,model);
 			for (JukeBox a : jukes) {
 				if (a != null) {
 					jukeBoxes.add(convertToDto(a));
