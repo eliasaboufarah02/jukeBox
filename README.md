@@ -3,6 +3,7 @@
 
 ## Project Overview
 We are developing a Rest Api with a single GET endpoint which returns a paginated list of all jukeboxes that support a given setting id.
+The REST API is currently hosted on an application hosted on Heroku. (Check the  <a href = "https://github.com/eliasaboufarah02/jukeBox/wiki">Wiki Page</a> for more info.)
 
 ## About us
 |       Name     |                 About                 |
