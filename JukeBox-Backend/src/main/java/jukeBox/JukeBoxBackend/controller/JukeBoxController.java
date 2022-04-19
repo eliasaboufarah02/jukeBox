@@ -1,12 +1,9 @@
 package jukeBox.JukeBoxBackend.controller;
 
 import java.io.InputStream;
-
 import java.net.HttpURLConnection;
-
 import java.net.URL;
 import java.util.ArrayList;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
