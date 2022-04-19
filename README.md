@@ -11,11 +11,11 @@ We are developing a Rest Api with a single GET endpoint which returns a paginate
 ## Overview Table
 | Name | Role | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
 |------|--------------|------|------|-------|-------|
-| Elias Abou Farah | Backend Lead, Software Developer | 18 Hrs |  | |  |
+| Elias Abou Farah | Backend Lead, Software Developer | 17 Hrs |  | |  |
 
 
 ## Deliverable 1
 | Name | Contribution | Hours |
 |------|--------------|-------|
-| Elias Abou Farah | GitHub setup, Heroku and Spring setup, Action build system automation, Model code writing, Model Test writing, Unit Testing, RESTful API, Controller and service layers, Business methods implementation, Testing and debugging | 18 Hrs|
+| Elias Abou Farah | GitHub setup, Heroku and Spring setup, Action build system automation, Model code writing, Model Test writing, Unit Testing, RESTful API, Controller and service layers, Business methods implementation, Testing and debugging | 17 Hrs|
 
