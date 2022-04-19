@@ -72,7 +72,11 @@ public class JukeBoxService {
 		if (offset>matches.size()) throw new Exception("OffSet Value is too Big");
 		if (offset<0) throw new Exception("OffSet Value can't be negative");
 		if (matches.size()>limit&&limit!=-1) {
-			return new ArrayList<JukeBox>(matches.subList(offset, limit+offset));
+			if (limit+offset>matches.size()) {
+				return new ArrayList<JukeBox>(matches.subList(offset, matches.size()));
+			}else {
+				return new ArrayList<JukeBox>(matches.subList(offset, limit+offset));
+			}
 		}
 		
 			
