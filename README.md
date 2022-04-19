@@ -18,7 +18,12 @@ The REST API is currently hosted on an application hosted on Heroku. (Check the 
 ## Deliverable 1
 | Name | Contribution | Hours |
 |------|--------------|-------|
-| Elias Abou Farah | GitHub setup, Heroku and Spring setup, Action build system automation, Model code writing, Model Test writing, Unit Testing, RESTful API, Controller and service layers, Business methods implementation, Testing and debugging | 17 Hrs|
+| Elias Abou Farah | GitHub setup, Heroku and Spring setup, Action build system automation, Model code writing, Model Test writing, Unit Testing using JUnit, RESTful API, Controller and service layers, Business methods implementation, Testing and debugging | 17 Hrs|
+### Code Coverage on Model Classes using JUnit
+![image](https://user-images.githubusercontent.com/72624529/163998732-b0f51473-2326-4748-8e78-4e1bcd3839a6.png)
+
 
 ## Continuous Integration and Deployment
 This project supports continous integration and deployment through GitHub actions workflow and Gradle [YML File](https://github.com/eliasaboufarah02/jukeBox/blob/main/.github/workflows/main.yml)
+
+
