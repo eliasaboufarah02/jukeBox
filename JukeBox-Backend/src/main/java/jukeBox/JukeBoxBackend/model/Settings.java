@@ -10,19 +10,19 @@ import java.util.ArrayList;
  *
  */
 public class Settings {
-	private String id;
+	private String settingId;
 	private ArrayList<Requirement> requirements;
 	/**
 	 * @return the id
 	 */
 	public String getId() {
-		return id;
+		return settingId;
 	}
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(String id) {
-		this.id = id;
+		this.settingId = id;
 	}
 	/**
 	 * @return the requirement
@@ -41,14 +41,14 @@ public class Settings {
 	 * @param requirement
 	 */
 	public Settings(String id, ArrayList<Requirement> requirements) {
-		this.id = id;
+		this.settingId = id;
 		this.requirements = requirements;
 	}
 	/**
 	 * @param id
 	 */
 	public Settings(String id) {
-		this.id = id;
+		this.settingId = id;
 	}
 	
 }

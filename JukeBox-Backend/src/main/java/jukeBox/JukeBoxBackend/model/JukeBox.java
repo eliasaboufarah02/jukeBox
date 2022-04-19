@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class JukeBox {
 	private String id;
 	private String model;
-	private ArrayList<Components> components;
+	private ArrayList<String> components;
 	/**
 	 * @return the id
 	 */
@@ -33,13 +33,13 @@ public class JukeBox {
 	/**
 	 * @return the components
 	 */
-	public ArrayList<Components> getComponents() {
+	public ArrayList<String> getComponents() {
 		return components;
 	}
 	/**
 	 * @param components the components to set
 	 */
-	public void setComponents(ArrayList<Components> components) {
+	public void setComponents(ArrayList<String> components) {
 		this.components = components;
 	}
 	/**
@@ -47,7 +47,7 @@ public class JukeBox {
 	 * @param model
 	 * @param components
 	 */
-	public JukeBox(String id, String model, ArrayList<Components> components) {
+	public JukeBox(String id, String model, ArrayList<String> components) {
 		this.id = id;
 		this.model = model;
 		this.components = components;

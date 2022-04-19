@@ -13,7 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import jukeBox.JukeBoxBackend.model.Components;
 import jukeBox.JukeBoxBackend.model.JukeBox;
 import jukeBox.JukeBoxBackend.model.Requirement;
 import jukeBox.JukeBoxBackend.model.Settings;
@@ -47,16 +46,7 @@ public class jukeBoxBackendModelTester {
 		assertNotNull(jukebox.getModel());
 		assertEquals(jukebox.getModel(),model);
 	}
-	@Test
-	public void testNameComponents() {
-		String name ="led_panel";
-		Components component = new Components();
-		component.setName(name);
-		
-		assertNotNull(component);
-		assertNotNull(component.getName());
-		assertEquals(component.getName(),name);
-	}
+	
 	@Test
 	public void testCompleteJukeBox() {
 		String model ="fusion";
@@ -65,14 +55,12 @@ public class jukeBoxBackendModelTester {
 		JukeBox jukebox = new JukeBox();
 		jukebox.setId(id);
 		jukebox.setModel(model);
-		Components component = new Components();
-		component.setName(name);
-		ArrayList<Components> listComponents =new ArrayList<Components>();
-		listComponents.add(component);
+		ArrayList<String> listComponents =new ArrayList<String>();
+		listComponents.add(name);
 		jukebox.setComponents(listComponents);
 		assertNotNull(jukebox);
 		assertNotNull(jukebox.getComponents());
-		assertEquals(jukebox.getComponents().get(0).getName(),component.getName());
+		assertEquals(jukebox.getComponents().get(0),name);
 		
 	}
 	@Test
@@ -80,25 +68,16 @@ public class jukeBoxBackendModelTester {
 		String model ="fusion";
 		String name ="led_panel";
 		String id ="ef3f64g3i847rf438r78";
-		Components component = new Components();
-		component.setName(name);
-		ArrayList<Components> listComponents =new ArrayList<Components>();
-		listComponents.add(component);
+		ArrayList<String> listComponents =new ArrayList<String>();
+		listComponents.add(name);
 		JukeBox jukebox = new JukeBox(id,model,listComponents);
 		
 		assertNotNull(jukebox);
 		assertNotNull(jukebox.getComponents());
-		assertEquals(jukebox.getComponents().get(0).getName(),component.getName());
+		assertEquals(jukebox.getComponents().get(0),name);
 		
 	}
-	@Test
-	public void testConstructorComponents() {
-		String name ="led_panel";
-		Components component = new Components(name);
-		assertNotNull(component);
-		assertNotNull(component.getName());
-		assertEquals(component.getName(),name);
-	}
+	
 	@Test
 	public void testRequirementComponents() {
 		String req ="camera";

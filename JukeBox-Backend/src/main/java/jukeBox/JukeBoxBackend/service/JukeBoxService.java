@@ -2,10 +2,11 @@ package jukeBox.JukeBoxBackend.service;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import jukeBox.JukeBoxBackend.model.Components;
 import jukeBox.JukeBoxBackend.model.JukeBox;
 import jukeBox.JukeBoxBackend.model.Requirement;
 import jukeBox.JukeBoxBackend.model.Settings;
@@ -19,7 +20,7 @@ import javax.json.JsonReader;
 @Service
 public class JukeBoxService {
 
-	public ArrayList<JukeBox> getJukeBoxes(InputStream inputStream,InputStream inputStreamSettings,String shift,String max) throws Exception {
+	public ArrayList<JukeBox> getJukeBoxes(InputStream inputStream,InputStream inputStreamSettings,String shift,String max,String settingid,String model) throws Exception {
 		try {
 			Integer offset = Integer.parseInt(shift);
 			try {
@@ -28,7 +29,8 @@ public class JukeBoxService {
 					ArrayList<JukeBox> allJukeBoxes = generateJukeBoxes(inputStream);
 					try {
 						ArrayList<Settings> settings = generateSettings(inputStreamSettings);
-						return allJukeBoxes;
+						ArrayList<JukeBox> filteredJukeBoxes = search(allJukeBoxes,settings,settingid);
+						return filteredJukeBoxes;
 						//if (offset>array.size()) throw new Exception("OffSet Value is too Big");
 					} catch (Exception e) {
 						throw new Exception(e.getMessage());
@@ -44,6 +46,22 @@ public class JukeBoxService {
 			throw new Exception("Offset value is not an acceptable number. "+e.getMessage());
 		}
 		
+	}
+	private ArrayList<JukeBox> search(ArrayList<JukeBox> allJukeBoxes, ArrayList<Settings> settingsList, String settingid) {
+		Settings matchesSettings = settingsList.stream().filter(setting-> setting.getId().equals(settingid))
+	            .findFirst().orElse(null);
+		ArrayList<Requirement> requirements=matchesSettings.getRequirements();
+		ArrayList<JukeBox> matches =allJukeBoxes;
+		
+		for (Requirement req:requirements) {
+			
+			ArrayList<JukeBox> updatedMatches = (ArrayList<JukeBox>) matches.parallelStream()
+	            .filter((element) -> element.getComponents().contains(req.getRequirement()))
+	            .collect(Collectors.toList());
+			matches=updatedMatches;
+		}
+	    
+		return matches;
 	}
 	private ArrayList<Settings> generateSettings(InputStream inputStreamSettings) {
 		ArrayList<Settings> settings = new ArrayList<Settings>();
@@ -68,10 +86,10 @@ public class JukeBoxService {
 		JsonReader fileReader = Json.createReader(inputStream);
 		JsonArray array = fileReader.readArray();
 		for (int j=0;j<array.size();j++) {
-			ArrayList<Components> components = new ArrayList<Components>();
+			ArrayList<String> components = new ArrayList<String>();
 			JsonArray componentsToGet =array.getJsonObject(j).getJsonArray("components");
 			for (int i=0;i<componentsToGet.size();i++) {
-				components.add(new Components(componentsToGet.getJsonObject(i).getString("name")));
+				components.add(componentsToGet.getJsonObject(i).getString("name"));
 			}
 			JukeBox juke = new JukeBox(array.getJsonObject(j).getString("id"),array.getJsonObject(j).getString("model"),components);
 		    //offset and limit
