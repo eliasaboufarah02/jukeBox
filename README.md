@@ -19,3 +19,5 @@ We are developing a Rest Api with a single GET endpoint which returns a paginate
 |------|--------------|-------|
 | Elias Abou Farah | GitHub setup, Heroku and Spring setup, Action build system automation, Model code writing, Model Test writing, Unit Testing, RESTful API, Controller and service layers, Business methods implementation, Testing and debugging | 17 Hrs|
 
+## Continuous Integration and Deployment
+This project supports continous integration and deployment through GitHub actions workflow.
